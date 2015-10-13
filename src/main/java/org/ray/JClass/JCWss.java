@@ -1,4 +1,4 @@
-package org.ray.JClass.base.websocket.server;
+package org.ray.JClass;
 
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
@@ -12,15 +12,16 @@ import org.ray.JClass.base.websocket.drafts.Draft_17;
 import org.ray.JClass.base.websocket.framing.FrameBuilder;
 import org.ray.JClass.base.websocket.framing.Framedata;
 import org.ray.JClass.base.websocket.handshake.ClientHandshake;
+import org.ray.JClass.base.websocket.server.WebSocketServer;
 
-public class AutobahnServerTest extends WebSocketServer {
+public class JCWss extends WebSocketServer {
 	private static int counter = 0;
 	
-	public AutobahnServerTest( int port , Draft d ) throws UnknownHostException {
+	public JCWss( int port , Draft d ) throws UnknownHostException {
 		super( new InetSocketAddress( port ), Collections.singletonList( d ) );
 	}
 	
-	public AutobahnServerTest( InetSocketAddress address, Draft d ) {
+	public JCWss( InetSocketAddress address, Draft d ) {
 		super( address, Collections.singletonList( d ) );
 	}
 
@@ -59,7 +60,6 @@ public class AutobahnServerTest extends WebSocketServer {
 	}
 
 	public static void main( String[] args ) throws  UnknownHostException {
-		WebSocketImpl.DEBUG = false;
 		int port;
 		try {
 			port = new Integer( args[ 0 ] );
@@ -67,7 +67,7 @@ public class AutobahnServerTest extends WebSocketServer {
 			System.out.println( "No port specified. Defaulting to 8887" );
 			port = 8887;
 		}
-		new AutobahnServerTest( port, new Draft_17() ).start();
+		new JCWss( port, new Draft_17() ).start();
 	}
 
 }
