@@ -6,9 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.Collections;
 
 import org.ray.JClass.base.websocket.WebSocket;
-import org.ray.JClass.base.websocket.WebSocketImpl;
 import org.ray.JClass.base.websocket.drafts.Draft;
-import org.ray.JClass.base.websocket.drafts.Draft_17;
 import org.ray.JClass.base.websocket.framing.FrameBuilder;
 import org.ray.JClass.base.websocket.framing.Framedata;
 import org.ray.JClass.base.websocket.handshake.ClientHandshake;
@@ -58,16 +56,4 @@ public class JCWss extends WebSocketServer {
 		builder.setTransferemasked( false );
 		conn.sendFrame( frame );
 	}
-
-	public static void main( String[] args ) throws  UnknownHostException {
-		int port;
-		try {
-			port = new Integer( args[ 0 ] );
-		} catch ( Exception e ) {
-			System.out.println( "No port specified. Defaulting to 8887" );
-			port = 8887;
-		}
-		new JCWss( port, new Draft_17() ).start();
-	}
-
 }
